@@ -2,7 +2,6 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
-#include <string>
 #include <cstring>
 typedef long long ll;
 using namespace std;
@@ -18,11 +17,9 @@ int main(){
     ios_base::sync_with_stdio(0);
     cin.tie(0), cout.tie(0);
 
-    string tmp;
-    cin>> tmp;
-    strcpy(n, tmp.c_str());
+    cin>> n;
     
-    for(int i = 0; i < tmp.size(); i++){
+    for(int i = 0; i < strlen(n); i++){
         if((int)n[i] - 48 == 0){
             z = 1;
         }
