@@ -10,6 +10,7 @@ int n, m;
 vector<pair<int, int>> bus[1001];
 priority_queue<pair<int, int>, vector<pair<int, int>>, greater<>> pq;
 int dist[1001];
+// 방문 여부를 확인해서 priority_queue안에 요소가 많이 쌓이는 것을 방지 -> 안 하면 메모리 초과
 bool visit[1001];
 
 int main(){
