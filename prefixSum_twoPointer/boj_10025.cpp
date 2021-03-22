@@ -1,11 +1,15 @@
 #include <iostream>
-typedef long long ll;
 using namespace std;
 
-ll x[1000001];
+// 앨버트의 최적 위치는 중요하지 않기 때문에
+// two 포인터를 통해 연속된 2k+1개의 요소의 합이 가장 큰 것을 구하면 됨
+
+int x[1000001];
 int n, k;
-int m;
-ll ans;
+int s = 1000000;
+int e;
+int tmp;
+int ans;
 int main(){
     ios_base::sync_with_stdio(0);
     cin.tie(0), cout.tie(0);
@@ -14,23 +18,30 @@ int main(){
     int xi,q;
     for(int i = 0; i < n; i++){
         cin>> q>> xi;
-        x[xi] += q;
-        for(int j = 1; j <= k; j++){
-            if(0 <= xi - j){
-                x[xi - j] += q;
-            }
-            if(xi + j <= 1000000){
-                x[xi + j] += q;
-            }
+        x[xi] = q;
+        if(xi < s){
+            s = xi;
         }
-        if(m < xi){
-            m = xi;
+        if(e < xi){
+            e = xi;
         }
     }
-    for(int i = 0; i <= m; i++){
-        if(ans < x[i]){
-            ans = x[i];
+    int a = s;
+    int b = s + 2 * k;
+    if(b > 1000000){
+        b = 1000000;
+    }
+    for(int i = a; i <= b; i++){
+        ans += x[i];
+    }
+    tmp = ans;
+    while(b < e){
+        tmp -= x[a++];
+        tmp += x[++b];
+        if(ans < tmp){
+            ans = tmp;
         }
     }
+    
     cout<< ans;
 }
